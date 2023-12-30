@@ -18,6 +18,7 @@ class MainController extends Controller
     public function single($post)
     {
         $post = Post::find($post);
-        return view('single', compact('post'));
+        $category = $post->category->title;
+        return view('single', compact('post', 'category'));
     }
 }
