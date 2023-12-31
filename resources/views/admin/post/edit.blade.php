@@ -33,9 +33,9 @@
                         <label for="categoryPost" class="form-label">Категория</label>
                         <select name="category_id" class="form-select" aria-label="Default select example" id="categoryPost">
                             <option selected>Выберите категорию</option>
-                            <option value="1" {{ $post->category_id == 1 ? 'selected' : '' }}>Первая</option>
-                            <option value="2" {{ $post->category_id == 2 ? 'selected' : '' }}>Вторая</option>
-                            <option value="3" {{ $post->category_id == 3 ? 'selected' : '' }}>Третья</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}" {{ $category->id == $post->category_id ? 'selected' : '' }}>{{ $category->title }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <input type="submit" class="btn btn-primary" value="Загрузить">

@@ -13,3 +13,6 @@ composer require laravel/telescope
 php artisan telescope:install
  
 php artisan migrate
+
+Пам'ятка:
+exists:tags,id - в валидаторе проверяем, что это значение есть в таблице tags в столбце id

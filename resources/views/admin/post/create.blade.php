@@ -30,11 +30,22 @@
                         <label for="categoryPost" class="form-label">Категория</label>
                         <select name="category_id" class="form-select" aria-label="Default select example" id="categoryPost">
                             <option selected>Выберите категорию</option>
-                            <option value="1">Первая</option>
-                            <option value="2">Вторая</option>
-                            <option value="3">Третья</option>
+                            @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            @endforeach
                         </select>
                     </div>
+                    <div class="mb-3">
+                        <label for="tagPost" class="form-label">Теги</label>
+                        <select class="form-select" name="tag_ids[]" multiple id="tagPost">
+                            @foreach($tags as $tag)
+                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+
+
                     <input type="submit" class="btn btn-primary" value="Загрузить">
                 </form>
                 <!-- Divider-->
