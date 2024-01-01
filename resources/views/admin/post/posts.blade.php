@@ -13,7 +13,7 @@
                 <div class="col-md-10 col-lg-8 col-xl-7 d-flex justify-content-between">
                     <!-- Post preview-->
                         <div class="post-preview">
-                            <a href="post.html">
+                            <a href="{{ route('single', $post->id) }}">
                                 <h2 class="post-title">{{ $post->title }}</h2>
                             </a>
                         </div>

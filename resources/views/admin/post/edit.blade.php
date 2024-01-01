@@ -17,7 +17,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="contentPost" class="form-label">Содержание поста</label>
-                        <textarea name="message" class="form-control" id="contentPost" rows="3">{{ $post->message }}</textarea>
+                        <textarea name="message" class="form-control" id="contentPost"
+                                  rows="3">{{ $post->message }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label for="mainImage" class="form-label d-block">Главное изображение</label>
@@ -31,11 +32,23 @@
                     </div>
                     <div class="mb-3">
                         <label for="categoryPost" class="form-label">Категория</label>
-                        <select name="category_id" class="form-select" aria-label="Default select example" id="categoryPost">
+                        <select name="category_id" class="form-select" aria-label="Default select example"
+                                id="categoryPost">
                             <option selected>Выберите категорию</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}" {{ $category->id == $post->category_id ? 'selected' : '' }}>{{ $category->title }}</option>
                             @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tagPost" class="form-label">Теги</label>
+                        <select class="form-select" name="tag_ids[]" multiple id="tagPost">
+                            @foreach($tags as $tag)
+
+                                    <option value="{{ $tag->id }}" {{ in_array($tag->id, $editTags) ? 'selected' : '' }}>{{ $tag->name }}</option>
+
+                            @endforeach
+
                         </select>
                     </div>
                     <input type="submit" class="btn btn-primary" value="Загрузить">

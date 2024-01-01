@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use function Laravel\Prompts\select;
 
 class AdminPostController extends Controller
 {
@@ -33,8 +34,11 @@ class AdminPostController extends Controller
 
         $data['main_image'] = $request->file('main_image')->store('images', 'public');
         $data['preview_image'] = $request->file('preview_image')->store('images', 'public');
-        $tags = $data['tag_ids'];
-        unset($data['tag_ids']);
+        if (isset($data['tag_ids'])){
+            $tags = $data['tag_ids'];
+            unset($data['tag_ids']);
+        }
+
         $post = Post::firstOrCreate($data);
         if (isset($tags)){
             foreach ($tags as $tag)
@@ -52,7 +56,13 @@ class AdminPostController extends Controller
     {
         $post = Post::find($id);
         $categories = Category::all();
-        return view('admin.post.edit', compact('post', 'categories'));
+        $tags = Tag::all();
+        $postTags = $post->tag;
+        foreach ($postTags as $postTag){
+            $editTags[] = $postTag->id;
+        }
+
+        return view('admin.post.edit', compact('post', 'categories', 'tags', 'editTags'));
     }
 
     public function update(UpdateRequest $request, Post $post)
