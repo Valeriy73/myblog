@@ -57,10 +57,7 @@ class AdminPostController extends Controller
         $post = Post::find($id);
         $categories = Category::all();
         $tags = Tag::all();
-        $postTags = $post->tag;
-        foreach ($postTags as $postTag){
-            $editTags[] = $postTag->id;
-        }
+        $editTags = $post->tag->pluck('id')->toArray();
 
         return view('admin.post.edit', compact('post', 'categories', 'tags', 'editTags'));
     }
