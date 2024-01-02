@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use function Laravel\Prompts\select;
 
@@ -38,6 +39,7 @@ class AdminPostController extends Controller
             $tags = $data['tag_ids'];
             unset($data['tag_ids']);
         }
+        $data['user_id'] = Auth::id();
 
         $post = Post::firstOrCreate($data);
         if (isset($tags)){
