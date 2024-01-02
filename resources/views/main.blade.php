@@ -15,7 +15,7 @@
                     <p class="post-meta">
                         Posted by
                         <a href="#">Start Bootstrap</a>
-                        on {{ $post->created_at }} category {{ $categories->get($post->category_id)->title }}
+                        on {{ $post->created_at->format('F d, Y') }} category {{ $categories->get($post->category_id)->title }}
                     </p>
                 </div>
                 <!-- Divider-->

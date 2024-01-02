@@ -13,7 +13,7 @@
                     <span class="meta">
                                 Posted by
                                 <a href="#!">Start Bootstrap</a>
-                                on on {{ $post->created_at }} category {{ $category }}
+                                on on {{ $post->created_at->format('F d, Y') }} category {{ $category }}
                             </span>
                 </div>
             </div>
