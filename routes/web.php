@@ -22,6 +22,11 @@ Route::group(['prefix' => 'posts'], function ()
 {
     Route::get('/{post}', [MainController::class, 'single'])->name('single');
 });
+Route::group(['prefix' => 'category'], function ()
+{
+    Route::get('/', [MainController::class, 'categories'])->name('categories');
+    Route::get('/{category}', [MainController::class, 'category'])->name('category');
+});
 
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {

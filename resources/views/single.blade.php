@@ -9,7 +9,7 @@
                     {{ $post->message }}
                 </div>
             </div>
-            @if(auth()->check())
+            @if(auth()->check() && auth()->id() == $post->user_id)
                 <div class="post-preview ms-2 me-2 mt-5">
                     <a href="{{ route('admin.post.edit', $post->id) }}" class="btn btn-success ">
                         Редактировать

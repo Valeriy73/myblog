@@ -2,8 +2,9 @@
 
 @section('content')
     <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
 
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            @include('layouts.partials.leftbar')
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <!-- Post preview-->
                 @foreach($posts as $post)
@@ -14,8 +15,8 @@
                     <img src="{{ url('storage/' . $post->preview_image) }}" class="img-thumbnail w-25" alt="...">
                     <p class="post-meta">
                         Posted by
-                        <a href="#">Start Bootstrap</a>
-                        on {{ $post->created_at->format('F d, Y') }} category {{ $categories->get($post->category_id)->title }}
+                        <a href="#">{{ $post->user->name }}</a>
+                        on {{ $post->created_at->format('F d, Y') }} category {{ $post->category->title }}
                     </p>
                 </div>
                 <!-- Divider-->
