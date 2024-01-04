@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Tag;
-use Illuminate\Http\Request;
+use App\Http\Requests\CommentRequest;
 
 class MainController extends Controller
 {
@@ -21,7 +22,8 @@ class MainController extends Controller
     {
         $post = Post::find($post);
         $category = $post->category->title;
-        return view('single', compact('post', 'category'));
+        $comments = $post->comments;
+        return view('single', compact('post', 'category', 'comments'));
     }
 
     public function categories()
@@ -38,5 +40,30 @@ class MainController extends Controller
         $tags = Tag::all();
         $categories = Category::all();
         return view('categoryPosts', compact('category', 'categories','tags', 'posts'));
+    }
+
+    public function tags()
+    {
+        $tags = Tag::paginate(4);
+//        $tags = Tag::all();
+        $categories = Category::all();
+        return view('tag', compact('categories', 'tags'));
+    }
+
+    public function tag($tag)
+    {
+        $tag = Tag::find($tag);
+        $posts = $tag->posts;
+        $tags = Tag::all();
+        $categories = Category::all();
+        return view('tagPosts', compact('tag', 'categories','tags', 'posts'));
+    }
+
+    public function comment(CommentRequest $request)
+    {
+        $data = $request->validated();
+        Comment::create($data);
+
+        return redirect()->back();
     }
 }

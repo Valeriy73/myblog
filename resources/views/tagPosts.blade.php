@@ -6,6 +6,7 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
             @include('layouts.partials.leftbar')
             <div class="col-md-10 col-lg-8 col-xl-7">
+                <h2 class="post-title">{{ $tag->name }}</h2>
                 <!-- Post preview-->
                 @foreach($posts as $post)
                 <div class="post-preview">
@@ -16,8 +17,7 @@
                     <p class="post-meta">
                         Posted by
                         <a href="#">{{ $post->user->name }}</a>
-                        on {{ $post->created_at->format('F d, Y') }} category <a href="{{ route('category', $post->category->id) }}">
-                            {{ $post->category->title }}</a>
+                        on {{ $post->created_at->format('F d, Y') }} category {{ $post->category->title }}
                     </p>
                 </div>
                 <!-- Divider-->
@@ -25,7 +25,7 @@
                 @endforeach
                 <!-- Pager-->
 
-                {{ $posts->links() }}
+
 
 
 

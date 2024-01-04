@@ -27,7 +27,17 @@ Route::group(['prefix' => 'category'], function ()
     Route::get('/', [MainController::class, 'categories'])->name('categories');
     Route::get('/{category}', [MainController::class, 'category'])->name('category');
 });
+Route::group(['prefix' => 'tag'], function ()
+{
+    Route::get('/', [MainController::class, 'tags'])->name('tags');
+    Route::get('/{tag}', [MainController::class, 'tag'])->name('tag');
+});
 
+Route::group(['prefix' => 'comment'], function ()
+{
+    Route::post('/', [MainController::class, 'comment'])->name('comment');
+//    Route::get('/{tag}', [MainController::class, 'tag'])->name('tag');
+});
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', [AdminPostController::class, 'index'])->name('admin.post.index');

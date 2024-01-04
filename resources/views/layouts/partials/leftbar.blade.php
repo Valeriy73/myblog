@@ -6,10 +6,10 @@
             </li>
         @endforeach
     </ul>
-    <h3>Теги</h3>
+    <h3><a href="{{ route('tags') }}">Теги</a></h3>
     <ul class="ms-auto py-4 py-lg-0 list-group" style="height: 200px; overflow-y: scroll;">
         @foreach($tags as $tag)
-            <li class="list-group-item"><a href="#">{{ $tag->name }}</a>
+            <li class="list-group-item"><a href="{{ route('tag', $tag->id) }}">{{ $tag->name }}</a>
             </li>
         @endforeach
     </ul>
