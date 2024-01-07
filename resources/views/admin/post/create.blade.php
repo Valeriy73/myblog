@@ -12,28 +12,54 @@
                     @csrf
                     <div class="mb-3">
                         <label for="titlePost" class="form-label">Название поста</label>
-                        <input type="text" name="title" class="form-control" id="titlePost">
+                        <input type="text" name="title" class="form-control" id="titlePost" value="{{ old('title') }}">
+                        @error('title')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="contentPost" class="form-label">Содержание поста</label>
-                        <textarea name="message" class="form-control" id="contentPost" rows="3"></textarea>
+                        <textarea name="message" class="form-control" id="contentPost" rows="3">{{ old('message') }}</textarea>
+                        @error('message')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="mainImage" class="form-label">Главное изображение</label>
                         <input name="main_image" class="form-control" type="file" id="mainImage">
+                        @error('main_image')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="previewImage" class="form-label">Превью изображение</label>
                         <input name="preview_image" class="form-control" type="file" id="previewImage">
+                        @error('preview_image')
+                        <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="categoryPost" class="form-label">Категория</label>
-                        <select name="category_id" class="form-select" aria-label="Default select example" id="categoryPost">
+                        <select name="category_id" class="form-select" aria-label="Default select example"
+                                id="categoryPost">
                             <option selected>Выберите категорию</option>
                             @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                <option value="{{ $category->id }}">{{ $category->title }}</option>
                             @endforeach
                         </select>
+                        @error('category_id')
+                        <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="tagPost" class="form-label">Теги</label>
